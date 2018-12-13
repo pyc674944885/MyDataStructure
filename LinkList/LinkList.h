@@ -9,7 +9,7 @@ typedef struct LNode {   //定义一个单链表
 
 typedef struct DNode {   //定义一个单链表
 	int data;
-	DNode *next;
+	DNode *next,*pre;
 } DNode, *D;
 
 void InitList(L phead);
@@ -23,7 +23,8 @@ int LengthList(L phead);   //求链表的长度
 void DeleteX(L phead, int pos);  //删除链表第pos个位置的元素
 void InsertX(L phead, int pos,int value);  //在链表的第pos个位置插入元素
 void SortList(L phead);         //对链表中的元素进行排序
-
-
+void DeleteAllX(L& l,int x);//删除链表中所有值为x的元素  王道1
+void ReversePrint(L phead);
+void DeleteMin(L phead);
 #endif // !LINK_LIST
 

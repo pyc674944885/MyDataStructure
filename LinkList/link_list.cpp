@@ -20,14 +20,14 @@ L CreateLinkHead(L& phead) {
 	L s = nullptr;
 	int x;
 	phead = (L)malloc(sizeof(LNode));  //创建一个头节点
-	phead->next = NULL;
+	phead->next = nullptr;
 	cout << "Please Input the value:" << endl;
 	cin >> x;
 	while (x!=-1)
 	{
-		//s = (L)malloc(sizeof(LNode));
-		s = new LNode();
-		cout << s->data << endl;
+		s = (L)malloc(sizeof(LNode));
+		//s = new LNode();
+		//cout << s->data << endl;
 		s->data = x;
 		s->next = phead->next;
 		phead->next = s;
@@ -150,7 +150,95 @@ void InsertX(L phead, int pos,int value) {
 	p_temp->next = p_work->next;
 	p_work->next = p_temp;
 }  //在链表的第pos个位置插入元素
+L FindMax(L phead) {
+	if (phead == nullptr || phead->next == nullptr) {
+		cout << "List is null." << endl;
+		return nullptr;
+	}
+	L p_work = phead->next->next;
+	L p_max = phead->next;
+	int max = phead->next->data;
+	while (p_work != nullptr) {
+		if (max < p_work->data) {
+			max = p_work->data;
+			p_max = p_work;
+		}
+		p_work = p_work->next;
+	}
+	return p_max;
+}   //寻找一个链表的最大的节点
 void SortList(L phead) {
-
+	if (phead == nullptr || phead->next == nullptr)
+	{
+		cout << "List is null." << endl;
+	}
+	
+	
 }           //对链表中的元素进行排序
+void DeleteAllX(L& l,int x) {
+	L del_p = nullptr;
+	if (l == nullptr) {
+		//cout << "list is null." << endl;
+		return;
+	}
+	else if (l->data == x){
+		del_p = l;
+		l = l->next;
+		free(del_p);
+		DeleteAllX(l->next, x);
+	}
+	else {
+		DeleteAllX(l->next,x);
+	}
+	/*
+	//L del_pre = nullptr;
+	L p_work = l;
+	L del_p = nullptr;
+	while (p_work->data == x) {
+		del_p = p_work;
+		free(del_p);
+	}
+	while (p_work->next != nullptr)
+	{
+		if (p_work->next->data == x) {
+			del_p = p_work->next;
+			p_work->next = del_p->next;
+			free(del_p);
+		}
+		else {
+			p_work = p_work->next;
+		}
+	}
+	*/
+}
+//把带头结点的链表逆向输出
+void ReversePrint(L phead) {
+	if (phead->next != nullptr) {
+		ReversePrint(phead->next);
+	}
+	cout << phead->data << endl;
+}
+void DeleteMin(L phead) {
+	if (phead == nullptr || phead->next == nullptr) {
+		cout << "List is null." << endl;
+	}
+	L p_work = phead->next;
+	int min = phead->next->data;
+	L del_min_p = phead->next;
+	L del_min_pre = phead;
+	while (p_work->next != nullptr) {
+		if (p_work->next->data < min) {
+			min = p_work->next->data;
+			del_min_pre = p_work;
+			del_min_p = p_work->next;
+		}
+		p_work = p_work->next;
+	}
+	del_min_pre->next = del_min_p->next;
+	free(del_min_p);
+}  // 王道4
+void ReverseList(L phead) {
+
+}
+
 

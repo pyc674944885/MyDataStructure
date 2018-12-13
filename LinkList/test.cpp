@@ -11,6 +11,12 @@ int main() {
 	//ClearList(phead);
 	CreateLinkHead(phead);
 	PrintList(phead);
+	cout << "----------------------I'm devide line----------------------" << endl;
+	//DeleteAllX(phead->next,3);
+	//ReversePrint(phead->next);
+	DeleteMin(phead);
+
+	PrintList(phead);
 	//PrintList(phead);
 	/*
 	//cout << FindList(phead,3) << endl;
